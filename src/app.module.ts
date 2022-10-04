@@ -3,6 +3,9 @@ import {ConfigModule} from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {AppController} from './app.controller';
 import {AppService} from './app.service';
+import {SharedModule} from './shared.module';
+import {StudentController} from './student/student.controller';
+import {StudentService} from './student/student.service';
 
 @Module({
   imports: [
@@ -26,6 +29,7 @@ import {AppService} from './app.service';
       migrationsRun: true,
       migrations: ['migration/*.js'],
     }),
+    SharedModule,
   ],
   controllers: [AppController],
   providers: [AppService],
