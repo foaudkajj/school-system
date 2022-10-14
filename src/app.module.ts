@@ -4,6 +4,8 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import {AppController} from './app.controller';
 import {AppService} from './app.service';
 import { SharedModule } from './shared.module';
+import { StudentEvaluationController } from './student-evaluation/student-evaluation.controller';
+import { StudentEvaluationService } from './student-evaluation/student-evaluation.service';
 import {StudentController} from './student/student.controller';
 import {StudentService} from './student/student.service';
 
@@ -31,7 +33,7 @@ import {StudentService} from './student/student.service';
     }),
     SharedModule,
   ],
-  controllers: [AppController, StudentController],
-  providers: [AppService, StudentService],
+  controllers: [AppController, StudentController,StudentEvaluationController],
+  providers: [AppService, StudentService, StudentEvaluationService],
 })
 export class AppModule {}
