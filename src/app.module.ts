@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AttachmentController } from './attachment/attachment.controller';
+import { AttachmentService } from './attachment/attachment.service';
 import { InstallmentController } from './installment/installment.controller';
 import { InstallmentService } from './installment/installment.service';
 import { SharedModule } from './shared.module';
@@ -35,7 +37,7 @@ import { StudentService } from './student/student.service';
     }),
     SharedModule,
   ],
-  controllers: [AppController, StudentController, StudentEvaluationController, InstallmentController],
-  providers: [AppService, StudentService, StudentEvaluationService, InstallmentService],
+  controllers: [AppController, StudentController, StudentEvaluationController, InstallmentController, AttachmentController],
+  providers: [AppService, StudentService, StudentEvaluationService, InstallmentService, AttachmentService],
 })
 export class AppModule { }
