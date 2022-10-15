@@ -1,13 +1,15 @@
-import {Module} from '@nestjs/common';
-import {ConfigModule} from '@nestjs/config';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import {AppController} from './app.controller';
-import {AppService} from './app.service';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { InstallmentController } from './installment/installment.controller';
+import { InstallmentService } from './installment/installment.service';
 import { SharedModule } from './shared.module';
 import { StudentEvaluationController } from './student-evaluation/student-evaluation.controller';
 import { StudentEvaluationService } from './student-evaluation/student-evaluation.service';
-import {StudentController} from './student/student.controller';
-import {StudentService} from './student/student.service';
+import { StudentController } from './student/student.controller';
+import { StudentService } from './student/student.service';
 
 @Module({
   imports: [
@@ -33,7 +35,7 @@ import {StudentService} from './student/student.service';
     }),
     SharedModule,
   ],
-  controllers: [AppController, StudentController,StudentEvaluationController],
-  providers: [AppService, StudentService, StudentEvaluationService],
+  controllers: [AppController, StudentController, StudentEvaluationController, InstallmentController],
+  providers: [AppService, StudentService, StudentEvaluationService, InstallmentService],
 })
-export class AppModule {}
+export class AppModule { }
