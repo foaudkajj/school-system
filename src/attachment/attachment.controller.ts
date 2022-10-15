@@ -12,7 +12,7 @@ import { ApiParam } from '@nestjs/swagger';
 import { Attachment } from 'src/models';
 import { AttachmentService } from './attachment.service';
 
-@Controller('attachment')
+@Controller('api/attachment')
 export class AttachmentController {
   constructor(private readonly attachmentService: AttachmentService) { }
 

@@ -12,7 +12,7 @@ import {
   import {StudentEvaluation} from 'src/models';
 import { StudentEvaluationService } from './student-evaluation.service';
   
-  @Controller('student-evaluation')
+  @Controller('api/student-evaluation')
   export class StudentEvaluationController {
     constructor(private readonly studentEvaluationService: StudentEvaluationService) {}
   

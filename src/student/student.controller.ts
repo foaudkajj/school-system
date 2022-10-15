@@ -12,7 +12,7 @@ import {ApiParam} from '@nestjs/swagger';
 import {Student} from 'src/models';
 import {StudentService} from './student.service';
 
-@Controller('student')
+@Controller('api/students')
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 

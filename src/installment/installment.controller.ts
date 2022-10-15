@@ -12,7 +12,7 @@ import {
   import {Installment} from 'src/models';
 import { InstallmentService } from './installment.service';
   
-  @Controller('installment')
+  @Controller('api/installment')
   export class InstallmentController {
     constructor(private readonly installmentService: InstallmentService) {}
   
