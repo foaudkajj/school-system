@@ -12,6 +12,8 @@ import { StudentEvaluationController } from './student-evaluation/student-evalua
 import { StudentEvaluationService } from './student-evaluation/student-evaluation.service';
 import { StudentController } from './student/student.controller';
 import { StudentService } from './student/student.service';
+import { TeacherController } from './teacher/teacher.controller';
+import { TeacherService } from './teacher/teacher.service';
 
 @Module({
   imports: [
@@ -37,7 +39,7 @@ import { StudentService } from './student/student.service';
     }),
     SharedModule,
   ],
-  controllers: [AppController, StudentController, StudentEvaluationController, InstallmentController, AttachmentController],
-  providers: [AppService, StudentService, StudentEvaluationService, InstallmentService, AttachmentService],
+  controllers: [AppController, StudentController, StudentEvaluationController, InstallmentController, AttachmentController, TeacherController],
+  providers: [AppService, StudentService, StudentEvaluationService, InstallmentService, AttachmentService, TeacherService],
 })
 export class AppModule { }
