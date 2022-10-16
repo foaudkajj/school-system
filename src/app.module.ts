@@ -5,6 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AttachmentController } from './attachment/attachment.controller';
 import { AttachmentService } from './attachment/attachment.service';
+import { GenericListItemController } from './generic-list-item/generic-list-item.controller';
+import { GenericListItemService } from './generic-list-item/generic-list-item.service';
+import { GenericListController } from './generic-list/generic-list.controller';
+import { GenericListService } from './generic-list/generic-list.service';
 import { InstallmentController } from './installment/installment.controller';
 import { InstallmentService } from './installment/installment.service';
 import { SharedModule } from './shared.module';
@@ -39,7 +43,7 @@ import { TeacherService } from './teacher/teacher.service';
     }),
     SharedModule,
   ],
-  controllers: [AppController, StudentController, StudentEvaluationController, InstallmentController, AttachmentController, TeacherController],
-  providers: [AppService, StudentService, StudentEvaluationService, InstallmentService, AttachmentService, TeacherService],
+  controllers: [AppController, StudentController, StudentEvaluationController, InstallmentController, AttachmentController, TeacherController,GenericListController,GenericListItemController],
+  providers: [AppService, StudentService, StudentEvaluationService, InstallmentService, AttachmentService, TeacherService,GenericListService,GenericListItemService],
 })
 export class AppModule { }
