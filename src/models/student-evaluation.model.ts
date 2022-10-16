@@ -36,21 +36,9 @@ export class StudentEvaluation {
     @ApiProperty({ required: false, enum: Evaluation })
     homework: Evaluation;
 
-    @Column({ name: 'behaviout', type: 'enum', enum: Evaluation })
+    @Column({ name: 'behaviour', type: 'enum', enum: Evaluation })
     @ApiProperty({ required: false, enum: Evaluation })
-    behaviout: Evaluation;
-
-    @Column({ name: 'fee', default: 0 })
-    @ApiProperty({ required: true, type: 'number', format: 'double', default: 0 })
-    fee: number;
-
-    @Column({ name: 'discount' })
-    @ApiProperty({ required: false, type: 'integer' })
-    discount: number;
-
-    @Column({ name: 'transport_fee'})
-    @ApiProperty({ required: false, type: 'number', format: 'double'})
-    transportFee: number;
+    behaviour: Evaluation;
 
     @Column({name: 'note' })
     @ApiProperty({ required: false, type: 'text' })
