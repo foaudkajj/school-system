@@ -27,4 +27,8 @@ export class UserService {
   delete(id: string) {
     return this.userRepository.orm.delete({ id: id });
   }
+
+  findOneByUsername(username: string) {
+    return this.userRepository.orm.findOneBy({ username });
+  }
 }
