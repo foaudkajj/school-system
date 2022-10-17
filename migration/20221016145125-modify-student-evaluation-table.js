@@ -1,0 +1,17 @@
+const { MigrationInterface, QueryRunner } = require("typeorm");
+
+module.exports = class modifyStudentEvaluationTable20221016145125 {
+
+    async up(queryRunner) {
+        await queryRunner.query(
+            `alter table \`student_evaluation\`
+            rename column \`behaviout\` to \`behaviour\`,
+            drop \`fee\`,
+            drop \`transport_fee\`,
+            drop \`discount\` ;`,);
+    }
+
+    async down(queryRunner) {
+    }
+
+}
