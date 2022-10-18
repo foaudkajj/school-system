@@ -14,11 +14,12 @@ module.exports = class modifyStudentTable20221017154225 {
     async down(queryRunner) {
         await queryRunner.query(
             `alter table \`student\` 
+            drop constraint \`fk_student_country\`,
+            drop constraint \`fk_student_generic_list\`,
             drop \`education_type\`,
             drop \`nationality\`,
-            drop \`document_type\`,
-            drop constraint \`fk_student_country\`,
-            drop constraint \`fk_student_generic_list\`;`);
+            drop \`document_type\`;
+            `);
 
     }
 
