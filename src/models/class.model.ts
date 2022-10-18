@@ -1,11 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
-export enum EducationType {
-    PreSchool = "PreSchool",
-    School = "School",
-    Course = "Course"
-}
+import { EducationType } from './enums';
 
 @Entity()
 export class Class {
