@@ -12,6 +12,7 @@ export enum UserType {
 export enum UserStatus {
   Active = "Active",
   Passive = "Passive"
+}
 
 export enum EducationType {
   PreSchool = "PreSchool",
