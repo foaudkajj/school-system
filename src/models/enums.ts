@@ -18,3 +18,11 @@ export enum UserStatus {
   Active = "Active",
   Passive = "Passive"
 }
+
+export enum Type {
+  Identity = "Identity",
+  CV = "CV",
+  Photo = "Photo",
+  Certificate = "Certificate",
+  General = "General"
+}

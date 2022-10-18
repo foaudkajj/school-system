@@ -1,13 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
-export enum Type {
-    Identity = "Identity",
-    CV = "CV",
-    Photo = "Photo",
-    Certificate = "Certificate",
-    General = "General"
-}
+import { Type } from './enums';
 
 @Entity()
 export class Attachment {
