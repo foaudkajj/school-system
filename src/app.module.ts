@@ -5,12 +5,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AttachmentController } from './attachment/attachment.controller';
 import { AttachmentService } from './attachment/attachment.service';
+import { ClassController } from './class/class.controller';
+import { ClassService } from './class/class.service';
 import { GenericListItemController } from './generic-list-item/generic-list-item.controller';
 import { GenericListItemService } from './generic-list-item/generic-list-item.service';
 import { GenericListController } from './generic-list/generic-list.controller';
 import { GenericListService } from './generic-list/generic-list.service';
 import { InstallmentController } from './installment/installment.controller';
 import { InstallmentService } from './installment/installment.service';
+import { LessonController } from './lesson/lesson.controller';
+import { LessonService } from './lesson/lesson.service';
 import { SharedModule } from './shared.module';
 import { StudentEvaluationController } from './student-evaluation/student-evaluation.controller';
 import { StudentEvaluationService } from './student-evaluation/student-evaluation.service';
@@ -45,7 +49,7 @@ import { UserService } from './user/user.service';
     }),
     SharedModule,
   ],
-  controllers: [AppController, StudentController, StudentEvaluationController, InstallmentController, AttachmentController, TeacherController,GenericListController,GenericListItemController, UserController],
-  providers: [AppService, StudentService, StudentEvaluationService, InstallmentService, AttachmentService, TeacherService,GenericListService,GenericListItemService, UserService],
+  controllers: [AppController, StudentController, StudentEvaluationController, InstallmentController, AttachmentController, TeacherController,GenericListController,GenericListItemController,ClassController, LessonController,UserController],
+  providers: [AppService, StudentService, StudentEvaluationService, InstallmentService, AttachmentService, TeacherService,GenericListService,GenericListItemService,ClassService, LessonService,UserService],
 })
 export class AppModule { }
