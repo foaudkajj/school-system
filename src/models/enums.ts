@@ -8,3 +8,13 @@ export enum EducationType {
   School = 'School',
   Course = 'Course'
 }
+export enum UserType {
+  Teacher = "Teacher",
+  Student = "Student",
+  Employee = "Employee"
+}
+
+export enum UserStatus {
+  Active = "Active",
+  Passive = "Passive"
+}
