@@ -3,6 +3,11 @@ export enum Gender {
   Female = 'Female',
 }
 
+export enum EducationType {
+  PreSchool = 'PreSchool',
+  School = 'School',
+  Course = 'Course'
+}
 export enum UserType {
   Teacher = "Teacher",
   Student = "Student",
@@ -12,10 +17,4 @@ export enum UserType {
 export enum UserStatus {
   Active = "Active",
   Passive = "Passive"
-}
-
-export enum EducationType {
-  PreSchool = "PreSchool",
-  School = "School",
-  Course = "Course"
 }
