@@ -1,16 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
-export enum UserType {
-    Teacher = "Teacher",
-    Student = "Student",
-    Employee = "Employee"
-}
-
-export enum Status {
-    Active = "Active",
-    Passive = "Passive"
-}
+import { UserStatus, UserType } from './enums';
 
 @Entity()
 export class User {
@@ -38,8 +28,8 @@ export class User {
     @ApiProperty({ required: false, type: 'string' })
     salt: string;
 
-    @Column({ name: 'status', type: 'enum', enum: Status })
-    @ApiProperty({ required: false, enum: Status })
-    status: Status;
+    @Column({ name: 'status', type: 'enum', enum: UserStatus })
+    @ApiProperty({ required: false, enum: UserStatus })
+    status: UserStatus;
 
 }
