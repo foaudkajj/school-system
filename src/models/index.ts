@@ -10,3 +10,4 @@ export * from './country.model';
 export * from './user.model';
 export * from './class.model';
 export * from './lesson.model';
+export * from './course.model';
