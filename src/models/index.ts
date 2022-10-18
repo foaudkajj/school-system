@@ -7,3 +7,5 @@ export * from './requests/login.request';
 export * from './generic-list.model';
 export * from './generic-list-item.model';
 export * from './user.model';
+export * from './class.model';
+export * from './lesson.model';
