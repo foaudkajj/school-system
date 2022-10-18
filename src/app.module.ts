@@ -29,6 +29,8 @@ import {TeacherController} from './teacher/teacher.controller';
 import {TeacherService} from './teacher/teacher.service';
 import {UserController} from './user/user.controller';
 import {UserService} from './user/user.service';
+import { CountryController } from './country/country.controller';
+import { CountryService } from './country/country.service';
 
 @Module({
   imports: [
@@ -71,6 +73,7 @@ import {UserService} from './user/user.service';
     ClassController,
     LessonController,
     UserController,
+    CountryController
   ],
   providers: [
     AppService,
@@ -87,6 +90,7 @@ import {UserService} from './user/user.service';
     AuthService,
     LocalStrategy,
     JwtStrategy,
-  ],
+    CountryService
+  ]
 })
 export class AppModule {}
