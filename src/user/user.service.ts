@@ -2,6 +2,7 @@ import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {User} from 'src/models';
 import {Not} from 'typeorm';
 import {UserRepository} from './user.repository';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -18,19 +19,30 @@ export class UserService {
         HttpStatus.BAD_REQUEST,
       );
     }
+    const salt = bcrypt.genSaltSync();
+    const hashpassword = bcrypt.hashSync(row.password, salt);
+    row.password = hashpassword;
     return this.userRepository.orm.insert(row);
   }
 
   async update(row: Partial<User>, id: string) {
-    const isExist = await this.userRepository.orm.findOneBy({
-      rowId: row.rowId,
-      id: Not(id),
-    });
-    if (isExist) {
-      throw new HttpException(
-        'ERROR.USER_ALREADY_EXIST',
-        HttpStatus.BAD_REQUEST,
-      );
+    if (row.rowId) {
+      const isExist = await this.userRepository.orm.findOneBy({
+        rowId: row.rowId,
+        id: Not(id),
+      });
+      if (isExist) {
+        throw new HttpException(
+          'ERROR.USER_ALREADY_EXIST',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
+
+    if (row.password) {
+      const salt = bcrypt.genSaltSync();
+      const hashpassword = bcrypt.hashSync(row.password, salt);
+      row.password = hashpassword;
     }
     return this.userRepository.orm.update({id: id}, row);
   }
@@ -40,6 +52,6 @@ export class UserService {
   }
 
   findOneByUsername(username: string) {
-    return this.userRepository.orm.findOneBy({ username });
+    return this.userRepository.orm.findOneBy({username});
   }
 }

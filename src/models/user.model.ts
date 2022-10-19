@@ -20,7 +20,7 @@ export class User {
     @ApiProperty({ required: true, type: 'string' })
     username: string;
 
-    @Column({ length: 50, name: 'password' })
+    @Column({ length: 100, name: 'password' })
     @ApiProperty({ required: true, type: 'string' })
     password: string;
 
@@ -31,5 +31,4 @@ export class User {
     @Column({ name: 'status', type: 'enum', enum: UserStatus })
     @ApiProperty({ required: false, enum: UserStatus })
     status: UserStatus;
-
 }
