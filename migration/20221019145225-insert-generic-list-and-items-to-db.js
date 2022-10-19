@@ -22,7 +22,7 @@ module.exports = class insertGenericListAndItemsToDb20221019145225 {
         await queryRunner.query(
             `delete from \`generic_list\`;`,);
         await queryRunner.query(
-            `alter table \`generic_list\` modify \`description\` not null;`,);
+            `alter table \`generic_list\` modify \`description\` varchar(1000) not null;`,);
     }
 
 }
