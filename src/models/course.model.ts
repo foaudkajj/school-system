@@ -39,7 +39,7 @@ export class Course {
     withTest: boolean;
 
     @Column({ name: 'level_id' })
-    @ApiProperty({ required: true, format: 'uuid' })
+    @ApiProperty({ required: false, format: 'uuid' })
     levelId: string;
 
     @ManyToOne(() => GenericList, {
@@ -47,5 +47,5 @@ export class Course {
         onUpdate: 'CASCADE',
     })
     @JoinColumn({ name: 'level_id' })
-    level: GenericList;
+    level?: GenericList;
 }
