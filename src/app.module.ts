@@ -31,6 +31,8 @@ import {UserController} from './user/user.controller';
 import {UserService} from './user/user.service';
 import { CountryController } from './country/country.controller';
 import { CountryService } from './country/country.service';
+import { CourseController } from './course/course.controller';
+import { CourseService } from './course/course.service';
 
 @Module({
   imports: [
@@ -73,7 +75,8 @@ import { CountryService } from './country/country.service';
     ClassController,
     LessonController,
     UserController,
-    CountryController
+    CountryController,
+    CourseController
   ],
   providers: [
     AppService,
@@ -90,7 +93,8 @@ import { CountryService } from './country/country.service';
     AuthService,
     LocalStrategy,
     JwtStrategy,
-    CountryService
+    CountryService,
+    CourseService
   ]
 })
 export class AppModule {}
