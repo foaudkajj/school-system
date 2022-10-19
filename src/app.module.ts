@@ -33,6 +33,7 @@ import { CountryController } from './country/country.controller';
 import { CountryService } from './country/country.service';
 import { CourseController } from './course/course.controller';
 import { CourseService } from './course/course.service';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
   imports: [
@@ -76,7 +77,8 @@ import { CourseService } from './course/course.service';
     LessonController,
     UserController,
     CountryController,
-    CourseController
+    CourseController,
+    AuthController
   ],
   providers: [
     AppService,
