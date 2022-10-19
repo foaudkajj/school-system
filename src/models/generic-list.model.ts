@@ -12,6 +12,6 @@ export class GenericList {
     name: string;
 
     @Column({ length: 1000, name: 'description' })
-    @ApiProperty({ required: true, type: 'string' })
+    @ApiProperty({ required: false, type: 'string' })
     description: string;
 }
