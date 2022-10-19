@@ -253,4 +253,9 @@ module.exports = class insertCountriesToDb20221018103925 {
             ('73c58741-6a6a-48d0-8cc7-43464b14e66f','Zimbabwe');`
         );
     }
+
+    async down(queryRunner) {
+        await queryRunner.query(
+            `delete from \`country\`;`,);
+    }
 }
