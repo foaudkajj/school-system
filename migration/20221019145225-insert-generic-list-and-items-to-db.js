@@ -18,7 +18,9 @@ module.exports = class insertGenericListAndItemsToDb20221019145225 {
 
     async down(queryRunner) {
         await queryRunner.query(
-            `delete from \`generic_list\` where id = '5bf0a0ad-16d2-4d56-877e-350e4dd7ff54';`,);
+            `delete from \`generic_list_item\` where \`list_id\` = '5bf0a0ad-16d2-4d56-877e-350e4dd7ff54';`,);
+        await queryRunner.query(
+            `delete from \`generic_list\` where \`id\` = '5bf0a0ad-16d2-4d56-877e-350e4dd7ff54';`,);
         await queryRunner.query(
             `alter table \`generic_list\` modify \`description\` varchar(1000) not null;`,);
     }
