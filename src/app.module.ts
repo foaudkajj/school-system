@@ -33,6 +33,7 @@ import { CountryController } from './country/country.controller';
 import { CountryService } from './country/country.service';
 import { CourseController } from './course/course.controller';
 import { CourseService } from './course/course.service';
+import { AuthController } from './auth/auth.controller';
 import { CourseParticipantService } from './course-participant/course-participant.service';
 import { CourseParticipantController } from './course-participant/course-participant.controller';
 
@@ -79,6 +80,7 @@ import { CourseParticipantController } from './course-participant/course-partici
     UserController,
     CountryController,
     CourseController,
+    AuthController
     CourseParticipantController
   ],
   providers: [
