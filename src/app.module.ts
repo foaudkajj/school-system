@@ -34,6 +34,8 @@ import { CountryService } from './country/country.service';
 import { CourseController } from './course/course.controller';
 import { CourseService } from './course/course.service';
 import { AuthController } from './auth/auth.controller';
+import { CourseParticipantService } from './course-participant/course-participant.service';
+import { CourseParticipantController } from './course-participant/course-participant.controller';
 
 @Module({
   imports: [
@@ -79,6 +81,7 @@ import { AuthController } from './auth/auth.controller';
     CountryController,
     CourseController,
     AuthController
+    CourseParticipantController
   ],
   providers: [
     AppService,
@@ -96,7 +99,8 @@ import { AuthController } from './auth/auth.controller';
     LocalStrategy,
     JwtStrategy,
     CountryService,
-    CourseService
+    CourseService,
+    CourseParticipantService
   ]
 })
 export class AppModule {}

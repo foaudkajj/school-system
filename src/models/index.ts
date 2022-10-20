@@ -12,3 +12,4 @@ export * from './class.model';
 export * from './lesson.model';
 export * from './course.model';
 export * from './responses/login.response';
+export * from './course-participant.model';
