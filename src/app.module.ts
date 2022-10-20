@@ -80,7 +80,7 @@ import { CourseParticipantController } from './course-participant/course-partici
     UserController,
     CountryController,
     CourseController,
-    AuthController
+    AuthController,
     CourseParticipantController
   ],
   providers: [
