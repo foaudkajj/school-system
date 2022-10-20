@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { GenericListItem } from './generic-list-item.model';
 
 @Entity()
 export class GenericList {
@@ -12,6 +13,9 @@ export class GenericList {
     name: string;
 
     @Column({ length: 1000, name: 'description' })
-    @ApiProperty({ required: true, type: 'string' })
+    @ApiProperty({ required: false, type: 'string' })
     description: string;
+
+    @OneToMany(() => GenericListItem,(genericListItem) => genericListItem.list)
+    items: GenericListItem[];
 }

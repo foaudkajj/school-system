@@ -21,6 +21,12 @@ export class GenericListController {
     return this.genericListService.getAll();
   }
 
+  @Get('get/:id')
+  @ApiParam({ name: 'id' })
+  getById(@Param('id') id: string): Promise<GenericList> {
+    return this.genericListService.getById(id);
+  }
+
   @Post('insert')
   insert(@Body() row: GenericList) {
     return this.genericListService.insert(row);
