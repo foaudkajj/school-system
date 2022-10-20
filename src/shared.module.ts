@@ -20,12 +20,14 @@ import {
   Teacher,
   User,
   Course,
+  CourseParticipant,
 } from './models';
 import {StudentEvaluationRepository} from './student-evaluation/student-evaluation.repository';
 import {StudentRepository} from './student/student.repository';
 import {TeacherRepository} from './teacher/teacher.repository';
 import {UserRepository} from './user/user.repository';
 import { CourseRepository } from './course/course.repository';
+import { CourseParticipantRepository } from './course-participant/course-participant.repository';
 
 @Module({
   imports: [
@@ -41,7 +43,8 @@ import { CourseRepository } from './course/course.repository';
       Lesson,
       User,
       Country,
-      Course
+      Course,
+      CourseParticipant
     ]),
   ],
   controllers: [],
@@ -57,7 +60,8 @@ import { CourseRepository } from './course/course.repository';
     LessonRepository,
     UserRepository,
     CountryRepository,
-    CourseRepository
+    CourseRepository,
+    CourseParticipantRepository
   ],
   exports: [
     StudentRepository,
@@ -71,7 +75,8 @@ import { CourseRepository } from './course/course.repository';
     LessonRepository,
     UserRepository,
     CountryRepository,
-    CourseRepository
+    CourseRepository,
+    CourseParticipantRepository
   ],
 })
 /**
