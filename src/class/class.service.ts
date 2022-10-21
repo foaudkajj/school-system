@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Class } from 'src/models';
+import { Class, ClassLesson } from 'src/models';
 import { AssignLessonToClassRequest } from 'src/models/requests/assign-lesson-to-class.request';
 import { ClassLessonRepository } from './class-lesson.repository';
 import { ClassRepository } from './class.repository';
@@ -32,5 +32,9 @@ export class ClassService {
     for (let i = 0; i < req.lessonIdList.length; i++) {
       this.classLessonRepository.orm.insert({ classId:req.classId, lessonId: req.lessonIdList[i] });
     }
+  }
+
+  getClassLessons(classId: string): Promise<ClassLesson[]> {
+    return this.classLessonRepository.orm.find({ where: { classId } });
   }
 }
