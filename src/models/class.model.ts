@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EducationType } from './enums';
+import { Lesson } from './lesson.model';
 
 @Entity()
 export class Class {
@@ -15,4 +16,8 @@ export class Class {
     @Column({ name: 'education_type', type: 'enum', enum: EducationType })
     @ApiProperty({ required: true, enum: EducationType })
     educationType: EducationType;
+
+    @ManyToMany(() => Lesson, (lesson) => lesson.classes)
+    @JoinTable({name: 'class_lesson'})
+    lessons: Lesson[];
 }

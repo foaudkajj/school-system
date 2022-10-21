@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Class } from './class.model';
 
 @Entity()
@@ -12,14 +12,7 @@ export class Lesson {
     @ApiProperty({ required: true, type: 'string' })
     name: string;
 
-    @Column({ name: 'class_id' })
-    @ApiProperty({ required: true, format: 'uuid' })
-    classId: string;
-
-    @ManyToOne(() => Class, {
-        onDelete: 'RESTRICT',
-        onUpdate: 'CASCADE',
-    })
-    @JoinColumn({ name: 'class_id' })
-    class: Class;
+    @ManyToMany(() => Class, (Class) => Class.lessons)
+    @JoinTable({name: 'class_lesson'})
+    classes: Class[];
 }
