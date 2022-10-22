@@ -1,8 +1,8 @@
-import {Injectable} from '@nestjs/common';
-import {Class, ClassLesson} from 'src/models';
-import {AssignLessonToClassRequest} from 'src/models/requests/assign-lesson-to-class.request';
-import {ClassLessonRepository} from './class-lesson.repository';
-import {ClassRepository} from './class.repository';
+import { Injectable } from '@nestjs/common';
+import { Class, ClassLesson } from 'src/models';
+import { AssignLessonToClassRequest } from 'src/models/requests/assign-lesson-to-class.request';
+import { ClassLessonRepository } from './class-lesson.repository';
+import { ClassRepository } from './class.repository';
 import {v4 as uuid} from 'uuid';
 
 @Injectable()
@@ -34,5 +34,9 @@ export class ClassService {
     });
 
     await this.classLessonRepository.orm.insert(classLessonList);
+  }
+
+  getClassLessons(classId: string): Promise<ClassLesson[]> {
+    return this.classLessonRepository.orm.find({ where: { classId } });
   }
 }

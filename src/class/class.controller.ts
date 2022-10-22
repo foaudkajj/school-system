@@ -44,4 +44,10 @@ export class ClassController {
     return this.classService.assignLessonsToClass(request);
   }
 
+  @Get('get-class-lessons')
+  @ApiParam({ name: 'class_id' })
+  getClassLessons(@Param('class_id') classId: string) {
+    return this.classService.getClassLessons(classId);
+  }
+
 }
