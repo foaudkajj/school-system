@@ -13,3 +13,4 @@ export * from './lesson.model';
 export * from './course.model';
 export * from './responses/login.response';
 export * from './course-participant.model';
+export * from './class-lesson.model';
