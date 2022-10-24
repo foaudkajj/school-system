@@ -8,14 +8,14 @@ module.exports = class modifyStudentTable20221017154225 {
             add nationality char(36) not null,
             add document_type char(36) not null,
             add constraint \`fk_student_country\` foreign key (\`nationality\`) references \`country\` (\`id\`) on update cascade on delete restrict,
-            add constraint \`fk_student_generic_list\` foreign key (\`document_type\`) references \`generic_list\` (\`id\`) on update cascade on delete restrict ;`,);
+            add constraint \`fk_student_generic_list_item\` foreign key (\`document_type\`) references \`generic_list_item\` (\`id\`) on update cascade on delete restrict ;`,);
     }
 
     async down(queryRunner) {
         await queryRunner.query(
             `alter table \`student\` 
             drop constraint \`fk_student_country\`,
-            drop constraint \`fk_student_generic_list\`,
+            drop constraint \`fk_student_generic_list_item\`,
             drop \`education_type\`,
             drop \`nationality\`,
             drop \`document_type\`;

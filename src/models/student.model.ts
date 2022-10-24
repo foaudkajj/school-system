@@ -6,7 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import {Country, GenericList} from '.';
+import {Country, GenericListItem} from '.';
 import {EducationType, Gender} from './enums';
 
 @Entity()
@@ -86,10 +86,10 @@ export class Student {
   @JoinColumn({name: 'nationality_id'})
   nationality: Country;
 
-  @ManyToOne(() => GenericList, {
+  @ManyToOne(() => GenericListItem, {
     onDelete: 'RESTRICT',
     onUpdate: 'CASCADE',
   })
   @JoinColumn({name: 'document_type_id'})
-  documentType: GenericList;
+  documentType: GenericListItem;
 }

@@ -41,7 +41,7 @@ export class StudentEvaluation {
     behaviour: Evaluation;
 
     @Column({name: 'note' })
-    @ApiProperty({ required: false, type: 'text' })
+    @ApiProperty({ required: false, type: 'string' })
     note: string;
 
     @Column({ name: 'student_id' })

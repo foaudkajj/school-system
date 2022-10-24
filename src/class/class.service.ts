@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { Class, ClassLesson } from 'src/models';
-import { AssignLessonToClassRequest } from 'src/models/requests/assign-lesson-to-class.request';
-import { ClassLessonRepository } from './class-lesson.repository';
-import { ClassRepository } from './class.repository';
+import {Injectable} from '@nestjs/common';
+import {Class, ClassLesson} from 'src/models';
+import {AssignLessonToClassRequest} from 'src/models/requests/assign-lesson-to-class.request';
+import {ClassLessonRepository} from './class-lesson.repository';
+import {ClassRepository} from './class.repository';
 import {v4 as uuid} from 'uuid';
 
 @Injectable()
@@ -28,15 +28,18 @@ export class ClassService {
   }
 
   async assignLessonsToClass(req: AssignLessonToClassRequest) {
-    await this.classLessonRepository.orm.delete(req.classId);
-    const classLessonList: ClassLesson[] = req.lessonIdList.map(lessonId => {
-      return {id: uuid(), classId: req.classId, lessonId: lessonId};
-    });
+    await this.classLessonRepository.orm.delete({classId: req.classId});
 
-    await this.classLessonRepository.orm.insert(classLessonList);
+    if (req.lessonIdList?.length > 0) {
+      const classLessonList: ClassLesson[] = req.lessonIdList.map(lessonId => {
+        return {id: uuid(), classId: req.classId, lessonId: lessonId};
+      });
+
+      await this.classLessonRepository.orm.insert(classLessonList);
+    }
   }
 
   getClassLessons(classId: string): Promise<ClassLesson[]> {
-    return this.classLessonRepository.orm.find({ where: { classId } });
+    return this.classLessonRepository.orm.find({where: {classId}});
   }
 }

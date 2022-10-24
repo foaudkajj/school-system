@@ -15,7 +15,7 @@ module.exports = class courseTable20221018112525 {
                 \`with_test\` bool default false not null,
                 \`level_id\` char(36) null,
                 constraint \`pk_course\` primary key (\`id\`),
-                constraint \`fk_course_generic_list\` foreign key (\`level_id\`) references \`generic_list\` (\`id\`) on update cascade on delete restrict
+                constraint \`fk_course_generic_list_item\` foreign key (\`level_id\`) references \`generic_list_item\` (\`id\`) on update cascade on delete restrict
             ) Engine=InnoDB;
               `,
         );
