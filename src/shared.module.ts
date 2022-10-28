@@ -23,6 +23,7 @@ import {
   CourseParticipant,
   ClassLesson,
   Role,
+  Permission,
 } from './models';
 import {StudentEvaluationRepository} from './student-evaluation/student-evaluation.repository';
 import {StudentRepository} from './student/student.repository';
@@ -32,6 +33,7 @@ import { CourseRepository } from './course/course.repository';
 import { CourseParticipantRepository } from './course-participant/course-participant.repository';
 import { ClassLessonRepository } from './class/class-lesson.repository';
 import { RoleRepository } from './role/role.repository';
+import { PermissionRepository } from './permission/permission.repository';
 
 @Module({
   imports: [
@@ -50,7 +52,8 @@ import { RoleRepository } from './role/role.repository';
       Course,
       CourseParticipant,
       ClassLesson,
-      Role
+      Role,
+      Permission
     ]),
   ],
   controllers: [],
@@ -69,7 +72,8 @@ import { RoleRepository } from './role/role.repository';
     CourseRepository,
     CourseParticipantRepository,
     ClassLessonRepository,
-    RoleRepository
+    RoleRepository,
+    PermissionRepository
   ],
   exports: [
     StudentRepository,
@@ -86,7 +90,8 @@ import { RoleRepository } from './role/role.repository';
     CourseRepository,
     CourseParticipantRepository,
     ClassLessonRepository,
-    RoleRepository
+    RoleRepository,
+    PermissionRepository
   ],
 })
 /**
