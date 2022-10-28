@@ -4,7 +4,7 @@ module.exports = class removeClassIdColumnFromLessonTable20221021152025 {
 
     async up(queryRunner) {
         await queryRunner.query(
-            `alter table \`lesson\` drop constraint \`fk_lesson_class\`,
+            `alter table \`lesson\` drop FOREIGN KEY \`fk_lesson_class\`,
             drop \`class_id\`;`,);
     }
 
