@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { UserStatus, UserType } from './enums';
+import { Role } from './role.model';
 
 @Entity()
 export class User {
@@ -31,4 +32,15 @@ export class User {
     @Column({ name: 'status', type: 'enum', enum: UserStatus })
     @ApiProperty({ required: false, enum: UserStatus })
     status: UserStatus;
+
+    @Column({ name: 'role_id' })
+    @ApiProperty({ required: true, format: 'uuid' })
+    roleId: string;
+
+    @ManyToOne(() => Role, {
+        onDelete: 'RESTRICT',
+        onUpdate: 'CASCADE',
+    })
+    @JoinColumn({ name: 'role_id' })
+    role: Role;
 }
