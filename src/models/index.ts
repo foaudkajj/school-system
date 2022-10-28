@@ -16,3 +16,4 @@ export * from './course-participant.model';
 export * from './class-lesson.model';
 export * from './role.model';
 export * from './permission.model';
+export * from './role-permission.model';
