@@ -25,4 +25,7 @@ export class LoginResponse {
 
   @ApiProperty({type: 'string'})
   trSurname: string;
+
+  @ApiProperty({type: 'string'})
+  role: string;
 }

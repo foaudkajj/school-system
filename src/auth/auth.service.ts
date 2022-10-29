@@ -3,7 +3,7 @@ import {UserService} from 'src/user/user.service';
 import {JwtService} from '@nestjs/jwt';
 import {StudentService} from 'src/student/student.service';
 import {TeacherService} from 'src/teacher/teacher.service';
-import {LoginResponse} from 'src/models';
+import {LoginResponse, User} from 'src/models';
 import {compareSync} from 'bcryptjs';
 
 @Injectable()
@@ -32,7 +32,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any) {
+  async login(user: User) {
     const payload = {username: user.username, sub: user.id};
     if (user.type === 'Teacher') {
       const teacher = await this.techerService.getById(user.rowId);
