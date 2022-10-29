@@ -1,8 +1,8 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
+import { genSaltSync, hashSync } from 'bcryptjs';
 import {User} from 'src/models';
 import {Not} from 'typeorm';
 import {UserRepository} from './user.repository';
-import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -19,8 +19,8 @@ export class UserService {
         HttpStatus.BAD_REQUEST,
       );
     }
-    const salt = bcrypt.genSaltSync();
-    const hashpassword = bcrypt.hashSync(row.password, salt);
+    const salt = genSaltSync();
+    const hashpassword = hashSync(row.password, salt);
     row.password = hashpassword;
     return this.userRepository.orm.insert(row);
   }
@@ -40,8 +40,8 @@ export class UserService {
     }
 
     if (row.password) {
-      const salt = bcrypt.genSaltSync();
-      const hashpassword = bcrypt.hashSync(row.password, salt);
+      const salt = genSaltSync();
+      const hashpassword = hashSync(row.password, salt);
       row.password = hashpassword;
     }
     return this.userRepository.orm.update({id: id}, row);

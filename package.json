@@ -12,7 +12,7 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "npm i bcrypt && node main",
+    "start:prod": "node main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -20,7 +20,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "copy-migrations": "cpx \"migration/*.{js,sql,json}\" dist/migration",
-    "copy-packages": "cpx \"package.json\" dist/"
+    "copy-packages": "cpx \"package.json\" dist/ && cpx \"package-lock.json\" dist/"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -31,7 +31,8 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.1.2",
     "@nestjs/typeorm": "^9.0.1",
-    "bcrypt": "^5.1.0",
+    "@types/bcryptjs": "^2.4.2",
+    "bcryptjs": "^2.4.3",
     "cpx": "^1.5.0",
     "mysql2": "^2.3.3",
     "passport": "^0.6.0",
@@ -47,7 +48,6 @@
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
-    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
     "@types/jest": "28.1.8",
     "@types/node": "^16.0.0",
