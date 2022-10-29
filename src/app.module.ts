@@ -36,6 +36,10 @@ import { CourseService } from './course/course.service';
 import { AuthController } from './auth/auth.controller';
 import { CourseParticipantService } from './course-participant/course-participant.service';
 import { CourseParticipantController } from './course-participant/course-participant.controller';
+import { RoleController } from './role/role.controller';
+import { RoleService } from './role/role.service';
+import { PermissionService } from './permission/permission.service';
+import { RolePermissionService } from './role-permission/role-permission.service';
 
 @Module({
   imports: [
@@ -81,7 +85,8 @@ import { CourseParticipantController } from './course-participant/course-partici
     CountryController,
     CourseController,
     AuthController,
-    CourseParticipantController
+    CourseParticipantController,
+    RoleController
   ],
   providers: [
     AppService,
@@ -100,7 +105,10 @@ import { CourseParticipantController } from './course-participant/course-partici
     JwtStrategy,
     CountryService,
     CourseService,
-    CourseParticipantService
+    CourseParticipantService,
+    RoleService,
+    PermissionService,
+    RolePermissionService
   ]
 })
 export class AppModule {}
