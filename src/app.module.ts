@@ -38,6 +38,7 @@ import { CourseParticipantService } from './course-participant/course-participan
 import { CourseParticipantController } from './course-participant/course-participant.controller';
 import { RoleController } from './role/role.controller';
 import { RoleService } from './role/role.service';
+import { PermissionService } from './permission/permission.service';
 
 @Module({
   imports: [
@@ -104,7 +105,8 @@ import { RoleService } from './role/role.service';
     CountryService,
     CourseService,
     CourseParticipantService,
-    RoleService
+    RoleService,
+    PermissionService
   ]
 })
 export class AppModule {}
