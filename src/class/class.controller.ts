@@ -6,10 +6,15 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 
 } from '@nestjs/common';
 import { ApiParam } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Roles } from 'src/decorators/roles.decorator';
 import { Class } from 'src/models';
+import { Permissions } from 'src/models/enums';
 import { AssignLessonToClassRequest } from 'src/models/requests/assign-lesson-to-class.request';
 import { ClassService } from './class.service';
 
@@ -39,6 +44,9 @@ export class ClassController {
     return this.classService.delete(id);
   }
 
+  @Roles(Permissions.ASSING_LESSON_CLASS)
+  @UseGuards(RolesGuard)
+  @UseGuards(JwtAuthGuard)
   @Post('assign-lessons-to-class')
   assignLessonsToClass(@Body() request: AssignLessonToClassRequest) {
     return this.classService.assignLessonsToClass(request);

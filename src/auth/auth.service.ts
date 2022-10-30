@@ -1,10 +1,10 @@
-import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
-import {UserService} from 'src/user/user.service';
-import {JwtService} from '@nestjs/jwt';
-import {StudentService} from 'src/student/student.service';
-import {TeacherService} from 'src/teacher/teacher.service';
-import {LoginResponse, User} from 'src/models';
-import {compareSync} from 'bcryptjs';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { UserService } from 'src/user/user.service';
+import { JwtService } from '@nestjs/jwt';
+import { StudentService } from 'src/student/student.service';
+import { TeacherService } from 'src/teacher/teacher.service';
+import { LoginResponse, User } from 'src/models';
+import { compareSync } from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -12,15 +12,15 @@ export class AuthService {
     private usersService: UserService,
     private jwtService: JwtService,
     private studentService: StudentService,
-    private techerService: TeacherService,
-  ) {}
+    private techerService: TeacherService
+  ) { }
 
   async validateUser(username: string, password: string) {
     const user = await this.usersService.findOneByUsername(username);
     if (user) {
       const matchPassword = compareSync(password, user.password);
       if (matchPassword) {
-        const {password, ...result} = user;
+        const { password, ...result } = user;
         return result;
       } else {
         throw new HttpException(
@@ -33,13 +33,21 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const payload = {username: user.username, sub: user.id};
+    const permissions = user.role.rolePermissions.map(rolePermission => {
+      return rolePermission.permission.name ;
+    });
+    let payload = { username: user.username, sub: user.id, roles: [] };
+
+    if (user.role.name !== "admin") {
+      payload = { ...payload, roles: permissions };
+    }
     if (user.type === 'Teacher') {
       const teacher = await this.techerService.getById(user.rowId);
       return <LoginResponse>{
         username: user.username,
         userType: user.type,
         status: user.status,
+        role: user.role.name,
         name: teacher.name,
         surname: teacher.surname,
         trName: teacher.trName,
@@ -52,6 +60,7 @@ export class AuthService {
         username: user.username,
         userType: user.type,
         status: user.status,
+        role: user.role.name,
         name: student.name,
         surname: student.surname,
         trName: student.trName,
