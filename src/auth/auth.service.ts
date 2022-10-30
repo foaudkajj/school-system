@@ -4,7 +4,7 @@ import {JwtService} from '@nestjs/jwt';
 import {StudentService} from 'src/student/student.service';
 import {TeacherService} from 'src/teacher/teacher.service';
 import {LoginResponse, User} from 'src/models';
-import {compareSync} from 'bcryptjs';
+import {compareSync} from 'bcrypt';
 
 @Injectable()
 export class AuthService {
