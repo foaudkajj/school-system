@@ -29,18 +29,20 @@ import {TeacherController} from './teacher/teacher.controller';
 import {TeacherService} from './teacher/teacher.service';
 import {UserController} from './user/user.controller';
 import {UserService} from './user/user.service';
-import { CountryController } from './country/country.controller';
-import { CountryService } from './country/country.service';
-import { CourseController } from './course/course.controller';
-import { CourseService } from './course/course.service';
-import { AuthController } from './auth/auth.controller';
-import { CourseParticipantService } from './course-participant/course-participant.service';
-import { CourseParticipantController } from './course-participant/course-participant.controller';
-import { RoleController } from './role/role.controller';
-import { RoleService } from './role/role.service';
-import { PermissionService } from './permission/permission.service';
-import { RolePermissionService } from './role-permission/role-permission.service';
-import { RolesGuard } from './auth/guards/roles.guard';
+import {CountryController} from './country/country.controller';
+import {CountryService} from './country/country.service';
+import {CourseController} from './course/course.controller';
+import {CourseService} from './course/course.service';
+import {AuthController} from './auth/auth.controller';
+import {CourseParticipantService} from './course-participant/course-participant.service';
+import {CourseParticipantController} from './course-participant/course-participant.controller';
+import {RoleController} from './role/role.controller';
+import {RoleService} from './role/role.service';
+import {PermissionService} from './permission/permission.service';
+import {RolePermissionService} from './role-permission/role-permission.service';
+import {RolesGuard} from './auth/guards/roles.guard';
+import {APP_GUARD} from '@nestjs/core';
+import {JwtAuthGuard} from './auth/guards/jwt-auth.guard';
 
 @Module({
   imports: [
@@ -87,7 +89,7 @@ import { RolesGuard } from './auth/guards/roles.guard';
     CourseController,
     AuthController,
     CourseParticipantController,
-    RoleController
+    RoleController,
   ],
   providers: [
     AppService,
@@ -110,7 +112,14 @@ import { RolesGuard } from './auth/guards/roles.guard';
     RoleService,
     PermissionService,
     RolePermissionService,
-    RolesGuard
-  ]
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}
