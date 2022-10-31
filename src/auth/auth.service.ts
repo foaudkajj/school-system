@@ -33,13 +33,21 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const payload = {username: user.username, sub: user.id};
+    const permissions = user.role.rolePermissions.map(rolePermission => {
+      return rolePermission.permission.name;
+    });
+    let payload = {username: user.username, sub: user.id, roles: []};
+
+    if (user.role.name !== 'admin') {
+      payload = {...payload, roles: permissions};
+    }
     if (user.type === 'Teacher') {
       const teacher = await this.techerService.getById(user.rowId);
       return <LoginResponse>{
         username: user.username,
         userType: user.type,
         status: user.status,
+        role: user.role.name,
         name: teacher.name,
         surname: teacher.surname,
         trName: teacher.trName,
@@ -52,6 +60,7 @@ export class AuthService {
         username: user.username,
         userType: user.type,
         status: user.status,
+        role: user.role.name,
         name: student.name,
         surname: student.surname,
         trName: student.trName,

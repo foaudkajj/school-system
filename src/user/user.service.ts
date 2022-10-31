@@ -1,5 +1,5 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
-import { genSaltSync, hashSync } from 'bcryptjs';
+import {genSaltSync, hashSync} from 'bcryptjs';
 import {User} from 'src/models';
 import {Not} from 'typeorm';
 import {UserRepository} from './user.repository';
@@ -52,6 +52,15 @@ export class UserService {
   }
 
   findOneByUsername(username: string) {
-    return this.userRepository.orm.findOneBy({username});
+    return this.userRepository.orm.findOne({
+      where: {username: username},
+      relations: {
+        role: {
+          rolePermissions: {
+            permission: true,
+          },
+        },
+      },
+    });
   }
 }

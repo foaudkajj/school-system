@@ -2,8 +2,10 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
     Column,
     Entity,
+    OneToMany,
     PrimaryGeneratedColumn,
 } from 'typeorm';
+import { RolePermission } from './role-permission.model';
 
 @Entity()
 export class Role {
@@ -18,4 +20,7 @@ export class Role {
     @Column({ length: 1000, name: 'description' })
     @ApiProperty({ required: false, type: 'string' })
     description: string;
+
+    @OneToMany(() => RolePermission, (rolePermission) => rolePermission.role)
+    rolePermissions: RolePermission[];
 }
