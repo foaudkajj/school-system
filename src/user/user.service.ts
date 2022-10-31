@@ -1,6 +1,7 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {genSaltSync, hashSync} from 'bcryptjs';
 import {User} from 'src/models';
+import {UserType} from 'src/models/enums';
 import {Not} from 'typeorm';
 import {UserRepository} from './user.repository';
 
@@ -62,5 +63,9 @@ export class UserService {
         },
       },
     });
+  }
+
+  getByUserType(userType: UserType) {
+    return this.userRepository.orm.find({where: {type: userType}});
   }
 }
