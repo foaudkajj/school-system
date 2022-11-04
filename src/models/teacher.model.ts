@@ -35,4 +35,8 @@ export class Teacher {
   @Column({length: 20, name: 'identity_no'})
   @ApiProperty({required: true, type: 'string'})
   identityNo: string;
+
+  @Column({length: 10, name: 'serial_no'})
+  @ApiProperty({required: true, type: 'string'})
+  serialNo: string;
 }

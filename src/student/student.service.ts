@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Student } from 'src/models';
 import { StudentRepository } from './student.repository';
 
@@ -10,11 +10,27 @@ export class StudentService {
   }
 
   insert(row: Student) {
-    return this.studentRepository.orm.insert(row);
+    if ((/^ST/).test(row.serialNo)) {
+      return this.studentRepository.orm.insert(row);
+    } else {
+      throw new HttpException(
+        'ERROR.SERIAL_NO_NOT_VALID',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   update(row: Partial<Student>, id: string) {
-    return this.studentRepository.orm.update({ id: id }, row);
+    if (row.serialNo) {
+      if ((/^ST/).test(row.serialNo))
+        return this.studentRepository.orm.update({ id: id }, row);
+      else {
+        throw new HttpException(
+          'ERROR.SERIAL_NO_NOT_VALID',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
   }
 
   delete(id: string) {
