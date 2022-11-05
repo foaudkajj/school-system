@@ -17,3 +17,4 @@ export * from './class-lesson.model';
 export * from './role.model';
 export * from './permission.model';
 export * from './role-permission.model';
+export * from './responses/get-all-sub-users.response';
