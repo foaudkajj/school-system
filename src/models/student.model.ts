@@ -59,6 +59,10 @@ export class Student {
   @ApiProperty({required: false, type: 'string'})
   identityNo: string;
 
+  @Column({length: 10, name: 'serial_no'})
+  @ApiProperty({required: true, type: 'string'})
+  serialNo: string;
+
   @Column({length: 1000, name: 'address'})
   @ApiProperty({required: false, type: 'string'})
   address: string;
