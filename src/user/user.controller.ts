@@ -42,7 +42,7 @@ export class UserController {
     return this.userService.delete(id);
   }
 
-  @Get('/get/:user_type')
+  @Get('get/:user_type')
   @ApiParam({ name: 'user_type' })
   getByUserType( @Param('user_type') userType: UserType) {
     if(!Object.values(UserType).includes(userType)){

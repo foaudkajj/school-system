@@ -10,28 +10,28 @@ import {StudentService} from './student.service';
 export class StudentController {
   constructor(private readonly studentService: StudentService) {}
 
-  @Roles(Permissions.SHOW_STUDENTS)
   @Get('get')
+  @Roles(Permissions.SHOW_STUDENTS)
   getAll(): Promise<Student[]> {
     return this.studentService.getAll();
   }
 
-  @Roles(Permissions.ADD_STUDENTS)
   @Post('insert')
+  @Roles(Permissions.ADD_STUDENTS)
   insert(@Body() row: Student) {
     return this.studentService.insert(row);
   }
 
-  @Roles(Permissions.UPDATE_STUDENTS)
   @Put('update/:id')
   @ApiParam({name: 'id'})
+  @Roles(Permissions.UPDATE_STUDENTS)
   update(@Body() row: Student, @Param('id') id: string) {
     return this.studentService.update(row, id);
   }
 
-  @Roles(Permissions.DELETE_STUDENTS)
   @Delete('delete/:id')
   @ApiParam({name: 'id'})
+  @Roles(Permissions.DELETE_STUDENTS)
   delete(@Param('id') id: string) {
     return this.studentService.delete(id);
   }

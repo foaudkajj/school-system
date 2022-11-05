@@ -37,6 +37,6 @@ export class Teacher {
   identityNo: string;
 
   @Column({length: 10, name: 'serial_no'})
-  @ApiProperty({required: true, type: 'string'})
+  @ApiProperty({required: false, type: 'string'})
   serialNo: string;
 }

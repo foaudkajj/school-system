@@ -33,21 +33,17 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const permissions = user.role.rolePermissions.map(rolePermission => {
-      return rolePermission.permission.name;
-    });
-    let payload = {
+    const permissions =
+      user.role.rolePermissions.map(rolePermission => {
+        return rolePermission.permission.name;
+      }) ?? [];
+
+    const payload = {
       username: user.username,
       sub: user.id,
-      roles: [],
-      role: undefined,
+      roles: permissions,
+      role: user.role.name,
     };
-
-    if (user.role.name !== 'admin') {
-      payload = {...payload, roles: permissions};
-    } else {
-      payload = {...payload, role: user.role.name};
-    }
 
     if (user.type === 'Teacher') {
       const teacher = await this.techerService.getById(user.rowId);
