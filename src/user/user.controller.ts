@@ -53,5 +53,10 @@ export class UserController {
     }
     return this.userService.getByUserType(userType);
   }
+
+  @Get('get-all-sub-users')
+  getAllSubUsers(){
+    return this.userService.getAllSubUsers();
+  }
 }
 

@@ -1,13 +1,15 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {genSaltSync, hashSync} from 'bcryptjs';
-import {User} from 'src/models';
+import {GetAllSubUsersResponse, User} from 'src/models';
 import {UserType} from 'src/models/enums';
+import { StudentService } from 'src/student/student.service';
+import { TeacherService } from 'src/teacher/teacher.service';
 import {Not} from 'typeorm';
 import {UserRepository} from './user.repository';
 
 @Injectable()
 export class UserService {
-  constructor(private userRepository: UserRepository) {}
+  constructor(private userRepository: UserRepository,private teacherService: TeacherService, private studentService: StudentService) {}
   getAll(): Promise<User[]> {
     return this.userRepository.orm.find();
   }
@@ -67,5 +69,41 @@ export class UserService {
 
   getByUserType(userType: UserType) {
     return this.userRepository.orm.find({where: {type: userType}});
+  }
+
+  async getAllSubUsers(){
+    const teachers = await this.teacherService.getAll(); 
+    const students = await this.studentService.getAll(); 
+    //const employees = await this.employeeService.getAll();  //TODO
+    const teachersResponse = teachers.map((teacher)=>{
+      return <GetAllSubUsersResponse>{
+        id:teacher.id,
+        name:teacher.name,
+        surname: teacher.surname,
+        userType: "Teacher"
+      };
+    });
+
+    const studentsResponse = students.map((student)=>{
+      return <GetAllSubUsersResponse>{
+        id:student.id,
+        name:student.name,
+        surname: student.surname,
+        userType: "Student"
+      };
+    });
+
+    /* TODO
+    const employeesResponse = employees.map((employee)=>{
+      return <GetAllSubUsersResponse>{
+        id:employee.id,
+        name:employee.name,
+        surname: employee.surname,
+        userType: "Employee"
+      };
+    });*/
+
+    const response = [teachersResponse,studentsResponse];
+    return response;
   }
 }
