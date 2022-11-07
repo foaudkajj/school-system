@@ -14,6 +14,7 @@ export class UserService {
     private teacherService: TeacherService,
     private studentService: StudentService,
   ) {}
+
   getAll(): Promise<User[]> {
     return this.userRepository.orm.find();
   }
@@ -23,6 +24,13 @@ export class UserService {
     if (isExist) {
       throw new HttpException(
         'ERROR.USER_ALREADY_EXIST',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    const regex = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+    if (!regex.test(row.username)) {
+      throw new HttpException(
+        'ERROR.USERNAME_NOT_VALID',
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -38,9 +46,21 @@ export class UserService {
         rowId: row.rowId,
         id: Not(id),
       });
+
       if (isExist) {
         throw new HttpException(
           'ERROR.USER_ALREADY_EXIST',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
+
+    if (row.username) {
+      const regex =
+        /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
+      if (!regex.test(row.username)) {
+        throw new HttpException(
+          'ERROR.USERNAME_NOT_VALID',
           HttpStatus.BAD_REQUEST,
         );
       }
@@ -51,6 +71,7 @@ export class UserService {
       const hashpassword = hashSync(row.password, salt);
       row.password = hashpassword;
     }
+
     return this.userRepository.orm.update({id: id}, row);
   }
 
