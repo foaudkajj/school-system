@@ -9,5 +9,5 @@ export class GetAllSubUsersResponse {
   @ApiProperty({required: true, type: 'string'})
   surname: string;
   @ApiProperty({enum: UserType})
-  userType: UserType;
+  type: UserType;
 }
