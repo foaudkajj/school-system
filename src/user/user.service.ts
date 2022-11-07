@@ -46,6 +46,7 @@ export class UserService {
         rowId: row.rowId,
         id: Not(id),
       });
+
       if (isExist) {
         throw new HttpException(
           'ERROR.USER_ALREADY_EXIST',
