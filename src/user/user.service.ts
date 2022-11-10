@@ -27,6 +27,17 @@ export class UserService {
         HttpStatus.BAD_REQUEST,
       );
     }
+
+    const usernameExist = await this.userRepository.orm.findOneBy({
+      username: row.username,
+    });
+    if (usernameExist) {
+      throw new HttpException(
+        'ERROR.USERNAME_ALREADY_EXIST',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     const regex = /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
     if (!regex.test(row.username)) {
       throw new HttpException(
@@ -56,6 +67,17 @@ export class UserService {
     }
 
     if (row.username) {
+      const usernameExist = await this.userRepository.orm.findOneBy({
+        username: row.username,
+      });
+
+      if (usernameExist) {
+        throw new HttpException(
+          'ERROR.USERNAME_ALREADY_EXIST',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+
       const regex =
         /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/;
       if (!regex.test(row.username)) {
